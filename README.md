@@ -1,6 +1,6 @@
-# Kondagaon Marketplace — Sprint 1 demo
+# Minor Project
 
-This repository starts the college-project prototype described in [MARKETPLACE_SPRINT_HANDOFF.md](MARKETPLACE_SPRINT_HANDOFF.md). It has an Expo web/Android app and a local Node marketplace API. The transport API contract for the teammate is [TRANSPORT_API_HANDOFF.md](TRANSPORT_API_HANDOFF.md).
+Minor Project is a college prototype of a rural marketplace, piloted with a seller in Kondagaon, Chhattisgarh. It includes an Expo web/Android app and a local Node marketplace API. See the [team handoff](MARKETPLACE_SPRINT_HANDOFF.md) for the sprint scope and the [transport API handoff](TRANSPORT_API_HANDOFF.md) for the teammate-owned matching service.
 
 ## Run locally
 

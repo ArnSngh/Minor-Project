@@ -4,3 +4,9 @@ frontend/.expo/
 frontend/dist/
 frontend/.env.local
 *.log
+
+/TEAM_BUILD_PLAN-pdf.pdf
+/TRANSPORT_API_HANDOFF-pdf.pdf
+/docs/
+/frontend/.claude/
+/sprint-handoff-1.pdf

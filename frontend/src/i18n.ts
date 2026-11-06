@@ -1,5 +1,5 @@
 export const en = {
-  title: 'Kondagaon Marketplace', seller: 'Seller', buyer: 'Buyer', transport: 'Find transport', language: 'Language',
+  title: 'Minor Project', seller: 'Seller', buyer: 'Buyer', transport: 'Find transport', language: 'Language',
   provisional: 'Provisional translation — local review needed', api: 'Marketplace API',
   listing: 'Create listing', titleField: 'Product name', category: 'Category', description: 'Description',
   quantity: 'Quantity', unit: 'Unit', price: 'Price per unit (₹)', weight: 'Estimated kg per unit',
@@ -92,7 +92,7 @@ export const en = {
 export type Key = keyof typeof en;
 export type Locale = 'en' | 'hi' | 'hlb' | 'gon';
 const hi: Record<Key, string> = {
-  title: 'कोंडागांव बाज़ार', seller: 'विक्रेता', buyer: 'खरीदार', transport: 'वाहन खोजें', language: 'भाषा',
+  title: 'Minor Project', seller: 'विक्रेता', buyer: 'खरीदार', transport: 'वाहन खोजें', language: 'भाषा',
   provisional: 'प्रारंभिक अनुवाद — स्थानीय समीक्षा आवश्यक', api: 'बाज़ार सेवा', listing: 'उत्पाद जोड़ें', titleField: 'उत्पाद का नाम',
   category: 'श्रेणी', description: 'विवरण', quantity: 'मात्रा', unit: 'इकाई', price: 'प्रति इकाई मूल्य (₹)',
   weight: 'प्रति इकाई अनुमानित वजन (किग्रा)', length: 'पैकेट लंबाई (सेमी)', width: 'पैकेट चौड़ाई (सेमी)', height: 'पैकेट ऊँचाई (सेमी)',

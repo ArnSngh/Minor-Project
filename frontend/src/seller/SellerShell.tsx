@@ -30,8 +30,8 @@ export function SellerShell({ children }: { children: React.ReactNode }) {
   return <View style={st.shell}>
     <View style={st.topBar}><View style={[st.topBarInner, !wide && { width: width - 48 }]}>
       <View style={st.brandRow}>
-        <View style={st.brandMark}><Text style={st.brandMarkText}>B</Text></View>
-        <View><Text style={st.brandName}>Bastar Bazaar</Text><Text style={st.brandSub}>{t('sellerHub')}</Text></View>
+        <View style={st.brandMark}><Text style={st.brandMarkText}>M</Text></View>
+        <View><Text style={st.brandName}>Minor Project</Text><Text style={st.brandSub}>{t('sellerHub')}</Text></View>
       </View>
       <View style={[st.headerRight, !wide && { width: '100%' }]}>
         <View style={st.headerBadge}><Text style={st.headerBadgeText}>{t('pilotLocation')}</Text></View>
