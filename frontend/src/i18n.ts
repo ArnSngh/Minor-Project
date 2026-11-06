@@ -1,0 +1,56 @@
+export const en = {
+  title: 'Kondagaon Marketplace', seller: 'Seller', buyer: 'Buyer', transport: 'Find transport', language: 'Language',
+  provisional: 'Provisional translation — local review needed', api: 'Marketplace API',
+  listing: 'Create listing', titleField: 'Product name', category: 'Category', description: 'Description',
+  quantity: 'Quantity', unit: 'Unit', price: 'Price per unit (₹)', weight: 'Estimated kg per unit',
+  length: 'Package length (cm)', width: 'Package width (cm)', height: 'Package height (cm)',
+  village: 'Village', takePhoto: 'Take photo', choosePhoto: 'Choose photo', saveOffline: 'Save draft',
+  sync: 'Upload saved drafts', drafts: 'Saved drafts', noPhoto: 'Add a product photo',
+  saved: 'Draft saved on this device', uploaded: 'Listing uploaded', uploadFailed: 'Upload failed. Draft kept for retry.',
+  offline: 'Waiting to upload', pending: 'Pending', accepted: 'Accepted', declined: 'Declined', withdrawn: 'Withdrawn',
+  products: 'Products', search: 'Search products', order: 'Request order', buyerName: 'Your name', phone: 'Phone number',
+  amount: 'Requested quantity', requestSent: 'Request sent', requests: 'Order requests', noRequests: 'No requests yet',
+  exactQty: 'Exact quantity', total: 'Total price (₹)', accept: 'Accept', decline: 'Decline', withdraw: 'Withdraw',
+  call: 'Call', contact: 'Contact after request', noProducts: 'No listings yet', refresh: 'Refresh',
+  from: 'Pickup origin', to: 'Delivery destination', pickupRadius: 'Pickup road radius (km)', dropRadius: 'Drop road radius (km)',
+  load: 'Actual load (kg)', packages: 'Number of packages', findTrucks: 'Find trucks', noTrucks: 'No suitable trips found',
+  potential: 'Potential match — confirm by phone', available: 'Reported capacity', departure: 'Departure',
+  roadPickup: 'Road distance to pickup', roadDrop: 'Road distance from drop', fit: 'Potential fit',
+  error: 'Something went wrong', invalid: 'Please check the fields', sellerContact: 'Seller phone', buyerContact: 'Buyer phone',
+  demo: 'Local demo: seeded seller and sample trips', categoryProduce: 'Produce', categoryCraft: 'Handicraft', categoryIndustry: 'Small industry',
+  unitKg: 'kg', unitPiece: 'piece', confirm: 'Confirm', sellerTerms: 'Seller confirms exact terms',
+  counterofferRequired: 'Changed terms need buyer approval; counteroffers are coming later',
+  stockUnavailable: 'Not enough stock remains', transportUnavailable: 'Transport search is unavailable. Try again later',
+  photoTooLarge: 'Photo must be under 4 MB',
+} as const;
+export type Key = keyof typeof en;
+export type Locale = 'en' | 'hi' | 'hlb' | 'gon';
+const hi: Record<Key, string> = {
+  title: 'कोंडागांव बाज़ार', seller: 'विक्रेता', buyer: 'खरीदार', transport: 'वाहन खोजें', language: 'भाषा',
+  provisional: 'प्रारंभिक अनुवाद — स्थानीय समीक्षा आवश्यक', api: 'बाज़ार सेवा', listing: 'उत्पाद जोड़ें', titleField: 'उत्पाद का नाम',
+  category: 'श्रेणी', description: 'विवरण', quantity: 'मात्रा', unit: 'इकाई', price: 'प्रति इकाई मूल्य (₹)',
+  weight: 'प्रति इकाई अनुमानित वजन (किग्रा)', length: 'पैकेट लंबाई (सेमी)', width: 'पैकेट चौड़ाई (सेमी)', height: 'पैकेट ऊँचाई (सेमी)',
+  village: 'गाँव', takePhoto: 'फोटो लें', choosePhoto: 'फोटो चुनें', saveOffline: 'मसौदा सहेजें', sync: 'सहेजे मसौदे अपलोड करें',
+  drafts: 'सहेजे मसौदे', noPhoto: 'उत्पाद का फोटो जोड़ें', saved: 'मसौदा इस फोन पर सहेजा गया', uploaded: 'उत्पाद अपलोड हुआ',
+  uploadFailed: 'अपलोड विफल। मसौदा फिर कोशिश के लिए सुरक्षित है।', offline: 'अपलोड की प्रतीक्षा', pending: 'लंबित',
+  accepted: 'स्वीकृत', declined: 'अस्वीकृत', withdrawn: 'वापस लिया', products: 'उत्पाद', search: 'उत्पाद खोजें',
+  order: 'ऑर्डर अनुरोध भेजें', buyerName: 'आपका नाम', phone: 'फोन नंबर', amount: 'माँगी गई मात्रा', requestSent: 'अनुरोध भेजा गया',
+  requests: 'ऑर्डर अनुरोध', noRequests: 'अभी कोई अनुरोध नहीं', exactQty: 'सटीक मात्रा', total: 'कुल मूल्य (₹)',
+  accept: 'स्वीकार करें', decline: 'अस्वीकार करें', withdraw: 'वापस लें', call: 'फोन करें', contact: 'अनुरोध के बाद संपर्क',
+  noProducts: 'अभी कोई उत्पाद नहीं', refresh: 'फिर लाएँ', from: 'माल का स्थान', to: 'गंतव्य',
+  pickupRadius: 'उठाने की सड़क दूरी (किमी)', dropRadius: 'उतारने की सड़क दूरी (किमी)', load: 'असल वजन (किग्रा)',
+  packages: 'पैकेटों की संख्या', findTrucks: 'वाहन खोजें', noTrucks: 'कोई उपयुक्त यात्रा नहीं मिली',
+  potential: 'संभावित मेल — फोन पर पुष्टि करें', available: 'बताई गई क्षमता', departure: 'रवाना होने का समय',
+  roadPickup: 'उठाने के स्थान तक सड़क दूरी', roadDrop: 'उतारने से गंतव्य तक सड़क दूरी', fit: 'संभावित जगह',
+  error: 'कुछ गलत हुआ', invalid: 'कृपया जानकारी जाँचें', sellerContact: 'विक्रेता का फोन', buyerContact: 'खरीदार का फोन',
+  demo: 'स्थानीय डेमो: नमूना विक्रेता और यात्राएँ', categoryProduce: 'कृषि उपज', categoryCraft: 'हस्तशिल्प',
+  categoryIndustry: 'लघु उद्योग', unitKg: 'किग्रा', unitPiece: 'नग', confirm: 'पुष्टि करें',
+  sellerTerms: 'विक्रेता सटीक शर्तों की पुष्टि करे',
+  counterofferRequired: 'बदली हुई शर्तों पर खरीदार की मंज़ूरी चाहिए; यह सुविधा बाद में आएगी',
+  stockUnavailable: 'पर्याप्त माल उपलब्ध नहीं है', transportUnavailable: 'वाहन खोज अभी उपलब्ध नहीं है। बाद में कोशिश करें',
+  photoTooLarge: 'फोटो 4 एमबी से छोटी होनी चाहिए',
+};
+// These are explicit provisional placeholders, not validated Halbi/Gondi translations.
+// The UI warns users; native-speaker review is required before a public pilot.
+export const dictionaries: Record<Locale, Record<Key, string>> = { en, hi, hlb: hi, gon: hi };
+export const localeLabels: Record<Locale, string> = { en: 'English', hi: 'हिन्दी', hlb: 'हल्बी (मसौदा)', gon: 'गोंडी (मसौदा)' };
