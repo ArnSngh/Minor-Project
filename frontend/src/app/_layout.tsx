@@ -7,6 +7,8 @@ import { Button, s } from '../ui';
 
 type AppState = {
   t: (key: Key) => string;
+  locale: Locale;
+  setLocale: (locale: Locale) => void;
   version: number;
   published: () => void;
   transportListing: Listing | null;
@@ -25,10 +27,13 @@ export default function RootLayout() {
   const pathname = usePathname();
   const t = (key: Key) => dictionaries[locale][key] || en[key];
   const value: AppState = {
-    t, version, transportListing,
+    t, locale, setLocale, version, transportListing,
     published: () => setVersion(v => v + 1),
     openTransport: listing => { setTransportListing(listing); router.navigate('/transport'); },
   };
+  if (pathname.startsWith('/seller')) {
+    return <AppContext.Provider value={value}><Slot /></AppContext.Provider>;
+  }
   return <AppContext.Provider value={value}>
     <ScrollView style={{ flex: 1, backgroundColor: '#f5f3ed' }} contentContainerStyle={s.page}>
       <Text style={s.title}>{t('title')}</Text><Text style={s.muted}>{t('demo')}</Text>

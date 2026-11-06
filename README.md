@@ -21,11 +21,15 @@ For Android Expo Go, install the [Expo Go build matching SDK 58](https://expo.de
 
 To use the friend's service, set `TRANSPORT_API_BASE_URL` in the **server** terminal, such as `http://localhost:4100`, before `npm start`. The frontend still calls only port 4000. Without this variable, the API returns one explicitly labeled sample transport match for the Kondagaon→Raipur fixture. The sample transporter number is fake and cannot be called.
 
+## Seller UI
+
+The seller area now has separate routes: **Dashboard** (`/seller`), **My products** (`/seller/inventory`), **Create listing** (`/seller/new`), **Saved drafts** (`/seller/drafts`), and **Order requests** (`/seller/orders`). The desktop view uses a sidebar; narrow screens use a scrollable navigation row. The dashboard counts and product/order cards come from the local demo API and saved drafts. Amazon Seller Central's dashboard and catalogue navigation informed the layout; branding and workflows are specific to this project.
+
 ## Demo sequence
 
-1. Open Seller. Stop the marketplace API. Fill a listing and take/choose one photo. Save draft. Reload the app; draft and photo should remain.
-2. Restart the API and press **Upload saved drafts**. Open Buyer and refresh. The listing and photo should appear.
-3. Buyer requests a quantity. Switch to Seller, refresh requests, enter exact quantity, unit price and total, then accept. Switch back to Buyer and refresh the request status.
+1. Open Seller → **Create listing**. Stop the marketplace API. Fill the three steps and take/choose one photo. Save the draft. Reload the app; the draft and photo should remain under **Saved drafts**.
+2. Restart the API. Open **Saved drafts** and press **Upload saved drafts**. Open **My products** to see the published product, then open Buyer and refresh to see the listing and photo there.
+3. Buyer requests a quantity. Switch to Seller → **Order requests**, refresh, enter exact quantity, unit price and total, then accept. Switch back to Buyer and refresh the request status.
 4. Open Find transport. The default sample route is Kondagaon→Raipur. Change pickup/drop road radius or weight to see match/no-match behavior. When the friend's service is connected, its results replace the sample fixture.
 
 ## Validation
