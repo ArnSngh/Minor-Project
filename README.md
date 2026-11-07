@@ -2,24 +2,46 @@
 
 Minor Project is a college prototype of a rural marketplace, piloted with a seller in Kondagaon, Chhattisgarh. It includes an Expo web/Android app and a local Node marketplace API. See the [team handoff](MARKETPLACE_SPRINT_HANDOFF.md) for the sprint scope and the [transport API handoff](TRANSPORT_API_HANDOFF.md) for the teammate-owned matching service.
 
-## Run locally
+## Clone, set up, and run
 
-Requires Node.js and npm. Use two terminals:
-
-```powershell
-cd server
-npm start
-```
+Requires Git and Node.js/npm. Clone the repository, enter the newly cloned project folder, and install frontend dependencies once:
 
 ```powershell
-cd frontend
-$env:EXPO_PUBLIC_API_URL='http://localhost:4000'
-npm run web
+git clone https://github.com/ArnSngh/Minor-Project.git
+Set-Location minor-project
+npm.cmd run setup
 ```
 
-For Android Expo Go, install the [Expo Go build matching SDK 58](https://expo.dev/go) on the phone, then put the laptop and phone on the same Wi-Fi. Set `EXPO_PUBLIC_API_URL` to `http://<laptop-LAN-IP>:4000` before `npm start` in `frontend`, then scan Expo's QR code. A phone cannot reach the laptop API through `localhost`. The API listens on port 4000 by default; set `PORT` to change it. A local firewall may need to allow that port on the private network.
+Start the full local stack (transport API, marketplace API, and Expo web app) with one command:
 
-To use the friend's service, set `TRANSPORT_API_BASE_URL` in the **server** terminal, such as `http://localhost:4100`, before `npm start`. The frontend still calls only port 4000. Without this variable, the API returns one explicitly labeled sample transport match for the Kondagaon→Raipur fixture. The sample transporter number is fake and cannot be called.
+```powershell
+npm.cmd run dev
+```
+
+The command works from any machine because the runner resolves service paths relative to the repository; it does not depend on a developer's home-folder path. It starts the services on ports 4100 and 4000 and opens Expo web. Press **Ctrl+C** to stop all three processes.
+
+On macOS/Linux, use `npm run setup` and `npm run dev`. To run the transport service or marketplace backend alone, use the commands in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+For Android Expo Go, install the [Expo Go build matching SDK 58](https://expo.dev/go), connect the phone and computer to the same Wi-Fi, then start the services and Expo in LAN mode:
+
+```powershell
+$env:EXPO_PUBLIC_API_URL='http://<computer-LAN-IP>:4000'
+npm.cmd run dev:mobile
+```
+
+Scan the Expo QR code. A phone cannot reach the computer through `localhost`; use the computer's LAN IP and allow the relevant ports on the private-network firewall if prompted.
+
+The marketplace backend forwards transport requests to the independent service at `TRANSPORT_API_BASE_URL` (defaults to `http://127.0.0.1:4100` in the root dev runner). To connect a teammate's service, set `TRANSPORT_API_BASE_URL` before `npm run dev`. Without a service URL in standalone mode, the marketplace API retains its sample fixture fallback. Fixture phone numbers are fake and cannot be called.
+
+Demo truck trip fixtures are in [`transport-service/data/trips.json`](transport-service/data/trips.json). The service has no driver/admin UI or trip CRUD API; see [the operations guide](transport-service/README.md) for the safe fixture-editing workflow and limitations.
+
+## Team development
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the repository layout, API boundaries, branch workflow, and validation commands. Run the backend suites from the repository root with:
+
+```powershell
+npm.cmd test
+```
 
 ## Seller UI
 
@@ -31,6 +53,10 @@ The seller area now has separate routes: **Dashboard** (`/seller`), **My product
 2. Restart the API. Open **Saved drafts** and press **Upload saved drafts**. Open **My products** to see the published product, then open Buyer and refresh to see the listing and photo there.
 3. Buyer requests a quantity. Switch to Seller → **Order requests**, refresh, enter exact quantity, unit price and total, then accept. Switch back to Buyer and refresh the request status.
 4. Open Find transport. The default sample route is Kondagaon→Raipur. Change pickup/drop road radius or weight to see match/no-match behavior. When the friend's service is connected, its results replace the sample fixture.
+
+## Demo flow walkthrough
+
+For a guided end-to-end walkthrough, see [DEMO_FLOW_WALKTHROUGH.md](DEMO_FLOW_WALKTHROUGH.md). It covers the exact seller → buyer → transport flow, expected screens, and the commands needed to bring the demo up locally.
 
 ## Validation
 

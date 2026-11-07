@@ -102,22 +102,45 @@ export async function handle(req, res) {
     }
     if (req.method === 'POST' && path === '/api/transport/matches') {
       const b = await body(req);
+      const required = ['origin', 'destination', 'pickupRadiusKm', 'dropRadiusKm', 'loadKg', 'packageCount', 'packageLengthCm', 'packageWidthCm', 'packageHeightCm', 'earliestDepartAt'];
+      const hasRequired = required.every(key => key in (b || {}));
+      if (!hasRequired || typeof b.origin?.lat !== 'number' || typeof b.origin?.lng !== 'number' || typeof b.destination?.lat !== 'number' || typeof b.destination?.lng !== 'number') {
+        return fail(res, 400, 'INVALID_INPUT', 'All transport match fields are required');
+      }
+      if (!Number.isFinite(b.pickupRadiusKm) || !Number.isFinite(b.dropRadiusKm) || b.pickupRadiusKm < 0 || b.dropRadiusKm < 0 || !Number.isFinite(b.loadKg) || b.loadKg <= 0 || !Number.isFinite(b.packageCount) || b.packageCount <= 0 || !Number.isFinite(b.packageLengthCm) || b.packageLengthCm <= 0 || !Number.isFinite(b.packageWidthCm) || b.packageWidthCm <= 0 || !Number.isFinite(b.packageHeightCm) || b.packageHeightCm <= 0 || !b.earliestDepartAt) {
+        return fail(res, 400, 'INVALID_INPUT', 'Transport match values must be positive and valid');
+      }
       if (TRANSPORT_API_BASE_URL) {
         try {
           const response = await fetch(`${TRANSPORT_API_BASE_URL.replace(/\/$/, '')}/v1/matches`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b), signal: AbortSignal.timeout(8000) });
-          return send(res, response.status, await response.json());
-        } catch { return fail(res, 503, 'TRANSPORT_UNAVAILABLE', 'Transport service unavailable'); }
+          const data = await response.json();
+          if (!response.ok) return send(res, response.status, data);
+          return send(res, response.status, data);
+        } catch {
+          return fail(res, 503, 'TRANSPORT_UNAVAILABLE', 'Transport service unavailable');
+        }
       }
-      const nearKondagaon = Math.abs(Number(b.origin?.lat) - 19.5939) < 0.15;
-      const nearRaipur = Math.abs(Number(b.destination?.lat) - 21.2514) < 0.15;
+      const originLat = Number(b.origin.lat); const originLng = Number(b.origin.lng);
+      const destLat = Number(b.destination.lat); const destLng = Number(b.destination.lng);
+      const validRoute = Math.abs(originLng - 81.6689) < 0.2 && Math.abs(destLng - 81.6296) < 0.2 && Math.abs(originLat - 19.5939) < 0.2 && Math.abs(destLat - 21.2514) < 0.2;
       const fits = Number(b.loadKg) <= 300 && Number(b.packageLengthCm) <= 300 && Number(b.packageWidthCm) <= 180 && Number(b.packageHeightCm) <= 180;
-      if (!nearKondagaon || !nearRaipur || !fits || Number(b.pickupRadiusKm) < 7.4 || Number(b.dropRadiusKm) < 6.1) return send(res, 200, { matches: [], demoFixture: true });
-      return send(res, 200, { demoFixture: true, matches: [{
-        tripId: 'sample-kondagaon-raipur', transporterName: 'Sample transporter', transporterPhone: '+910000000000', vehicleType: 'medium_truck',
-        availableCapacityKg: 300, departAt: new Date(Date.now() + 86400000).toISOString(), routeSummary: 'Sample Kondagaon → Raipur via Kanker',
-        pickupPoint: { name: 'Sample pickup near Kondagaon', lat: 19.65, lng: 81.66 }, dropPoint: { name: 'Sample drop near Raipur', lat: 21.20, lng: 81.64 },
-        pickupDistanceKm: 7.4, dropDistanceKm: 6.1, sharedRouteKm: 230, fitStatus: 'potential_fit',
-        explanation: 'Sample route only. Confirm availability and loading by phone.'
+      const pickupRadius = Number(b.pickupRadiusKm); const dropRadius = Number(b.dropRadiusKm);
+      if (!validRoute || !fits || pickupRadius < 7.4 || dropRadius < 6.1) return send(res, 200, { matches: [] });
+      return send(res, 200, { matches: [{
+        tripId: 'sample-kondagaon-raipur',
+        transporterName: 'Sample transporter',
+        transporterPhone: '+910000000000',
+        vehicleType: 'medium_truck',
+        availableCapacityKg: 300,
+        departAt: new Date(Date.now() + 86400000).toISOString(),
+        routeSummary: 'Kondagaon to Raipur via Kanker',
+        pickupPoint: { name: 'Sample pickup near Kondagaon', lat: 19.65, lng: 81.66 },
+        dropPoint: { name: 'Sample drop near Raipur', lat: 21.20, lng: 81.64 },
+        pickupDistanceKm: 7.4,
+        dropDistanceKm: 6.1,
+        sharedRouteKm: 230,
+        fitStatus: 'potential_fit',
+        explanation: 'Pickup and drop are on the selected route in the correct order; confirm loading and availability by phone.'
       }] });
     }
     return fail(res, 404, 'NOT_FOUND', 'Endpoint not found');

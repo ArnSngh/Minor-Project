@@ -1,0 +1,36 @@
+[
+  {
+    "tripId": "demo-trip-1",
+    "transporterName": "Sample transporter",
+    "transporterPhone": "+91XXXXXXXXXX",
+    "vehicleType": "medium_truck",
+    "availableCapacityKg": 300,
+    "departAt": "2026-11-07T09:00:00+05:30",
+    "routeSummary": "Kondagaon to Raipur via Kanker",
+    "pickupPoint": { "name": "Sample pickup", "lat": 19.65, "lng": 81.66 },
+    "dropPoint": { "name": "Sample drop", "lat": 21.2, "lng": 81.64 },
+    "pickupDistanceKm": 7.4,
+    "dropDistanceKm": 6.1,
+    "sharedRouteKm": 230,
+    "fitStatus": "potential_fit",
+    "explanation": "Sample fixture only. Confirm loading and availability by phone.",
+    "active": true
+  },
+  {
+    "tripId": "demo-trip-2",
+    "transporterName": "Second sample transporter",
+    "transporterPhone": "+91YYYYYYYYYY",
+    "vehicleType": "mini_truck",
+    "availableCapacityKg": 180,
+    "departAt": "2026-11-07T10:30:00+05:30",
+    "routeSummary": "Kondagaon to Raipur via Baderajpur",
+    "pickupPoint": { "name": "Secondary pickup", "lat": 19.72, "lng": 81.62 },
+    "dropPoint": { "name": "Secondary drop", "lat": 21.15, "lng": 81.59 },
+    "pickupDistanceKm": 9.1,
+    "dropDistanceKm": 8.4,
+    "sharedRouteKm": 215,
+    "fitStatus": "potential_fit",
+    "explanation": "Sample fixture only; confirm loading and availability by phone.",
+    "active": true
+  }
+]

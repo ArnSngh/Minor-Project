@@ -1,0 +1,12 @@
+{
+  "name": "minor-project",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "dev": "node scripts/dev.js",
+    "dev:mobile": "node scripts/dev.js --mobile",
+    "test": "node scripts/test.js",
+    "demo:transport": "node transport-service/demo.js"
+  }
+}
